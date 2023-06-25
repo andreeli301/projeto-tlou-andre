@@ -9,16 +9,37 @@ Objetivo - Clicar no botão e mostrar a imagem de fundo correspondente ao botão
 - passo 6 - fazer parecer a imagem do botão clicado
 */
 
-//1
-const botoesCarrossel = document.querySelectorAll('.botao');
 
-//2
-botoesCarrossel.forEach((botao) => {
+const botoesCarrossel = document.querySelectorAll('.botao');
+const imagens = document.querySelectorAll('.imagem');
+
+botoesCarrossel.forEach((botao, indice) => {
   botao.addEventListener('click', () => {
-//3
-    const botaoSelecionado = document.querySelector('.selecionado');
-    botaoSelecionado.classList.remove('selecionado');
-//4
-    
+
+    desativarBotãoSelecionado();
+
+    selecionarBotaoCarrosel(botao);
+
+    esconderImagemAtiva();
+
+    mostrarImagemDeFundo(indice);
   })
 });
+
+function mostrarImagemDeFundo(indice) {
+  imagens[indice].classList.add('ativa');
+}
+
+function selecionarBotaoCarrosel(botao) {
+  botao.classList.add('selecionado');
+}
+
+function esconderImagemAtiva() {
+  const imagemAtiva = document.querySelector('.ativa');
+  imagemAtiva.classList.remove('ativa');
+}
+
+function desativarBotãoSelecionado() {
+  const botaoSelecionado = document.querySelector('.selecionado');
+  botaoSelecionado.classList.remove('selecionado');
+}
